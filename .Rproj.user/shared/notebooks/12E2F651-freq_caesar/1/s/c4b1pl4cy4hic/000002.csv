@@ -1,0 +1,5 @@
+"0","ggplot(dictionary_counts_dt, aes(x=weight)) + 
+  geom_histogram(color=""black"", fill=""white"")
+"
+"2","Error in FUN(X[[i]], ...) : object 'weight' not found
+"

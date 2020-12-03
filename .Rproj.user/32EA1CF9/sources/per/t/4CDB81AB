@@ -1,0 +1,29 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1606860123598.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "4CDB81AB",
+    "lastKnownWriteTime" : 4471150336,
+    "last_content_update" : 1606860123598,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "BB1EEE21",
+        "caption" : "dictionary_counts_dt",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=dictionary_counts_dt&cache_key=BB1EEE21",
+        "displayedObservations" : "26",
+        "environment" : "",
+        "object" : "dictionary_counts_dt",
+        "preview" : "0",
+        "totalObservations" : "26",
+        "variables" : "2"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

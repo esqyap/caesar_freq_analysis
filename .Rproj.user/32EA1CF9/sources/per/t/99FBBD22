@@ -1,0 +1,24 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1606855585870.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4141150041",
+    "id" : "99FBBD22",
+    "lastKnownWriteTime" : 1606888315,
+    "last_content_update" : 1606888315779,
+    "path" : "~/Documents/sfu_apsc_outreach/mtws/caesar_cipher/freq_analysis/report/freq_caesar.Rmd",
+    "project_path" : "report/freq_caesar.Rmd",
+    "properties" : {
+        "cursorPosition" : "66,0",
+        "last_setup_crc32" : "728D6102bb338d19",
+        "scrollLine" : "53",
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

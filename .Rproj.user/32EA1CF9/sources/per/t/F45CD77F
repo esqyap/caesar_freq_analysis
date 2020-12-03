@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1606865424890.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F45CD77F",
+    "lastKnownWriteTime" : 0,
+    "last_content_update" : 1606865424890,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "3a9680abea884cfab0ee947e5a09899c",
+        "name" : "decrypt",
+        "title" : "decrypt"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}

@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1606865388811.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "12D8EDF3",
+    "lastKnownWriteTime" : 7147058088598568966,
+    "last_content_update" : 1606865388811,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "id" : "bd2c9af78532452fae7f151b6639e5de",
+        "name" : "decrytp",
+        "title" : "decrytp"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "object_explorer"
+}

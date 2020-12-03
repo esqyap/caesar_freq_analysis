@@ -1,0 +1,120 @@
+---
+title: "Frequency analysis - Caesar cipher"
+author: "Eva Y."
+date: "12/1/2020"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r load dependencies, echo=FALSE}
+library(data.table)
+library(magrittr)
+library(caesar)
+library(ggplot2)
+library(purrr)
+```
+
+## Frequency of letters in English words
+
+### Words in the dictionary
+
+I downloaded a text file that consists of 10,000 English words (USA spelling) from the dictionary. I split up each word into characters and did a count.
+
+```{r find freq of words in the dictionary}
+# read the text file 
+dictionary_txt <- readLines("../data/wordlist.10000.txt")
+
+# split words up into characters and do a count
+dictionary_counts <- dictionary_txt %>% 
+  paste(collapse="") %>% 
+  strsplit(split="") %>% unlist %>% 
+  `[`(!. %in% c("", " ", ".", ",")) %>% 
+  table
+
+dictionary_counts_dt <- data.table(letter = names(dictionary_counts), count = as.numeric(dictionary_counts), stringsAsFactors=FALSE)
+dictionary_counts_dt <- dictionary_counts_dt[order(-count)]
+
+dictionary_counts_dt
+```
+
+#### Plot the frequency table for visualization.
+
+```{r plot bar graph for dictionary words}
+ggplot(data = dictionary_counts_dt, aes(x = letter, y = count)) +
+    geom_bar(stat="identity", position=position_dodge(), colour="black") +
+  theme_bw()
+```
+
+### Words based on text usage
+
+Hmm, let's try counting letters based on the usage of English words.
+
+```{r find freq of text usage}
+# read the text file 
+english_txt_usage <- fread("../data/cornell_math.csv")
+
+english_txt_usage
+
+# plot bar graph for text usage frequency
+ggplot(data = english_txt_usage, aes(x = Letter, y = Count)) +
+    geom_bar(stat="identity", position=position_dodge(), colour="black") + 
+    theme_bw()
+```
+
+## Frequency of letters in ciphertext
+
+For this part, I'm going to get a count of the letters in my cipher text.
+
+```{r freq of ciphertext}
+cipher_txt <- tolower("Max wxybgbmbhg hy ubhbgyhkftmbvl bl vnkkxgmer vhgmkhoxklbte, unm ubhbgyhkftmbvl vtg ux ehhlxer wxybgxw tl max nlx hy vhfinmxkl tgw vhfinmxk lvbxgvx mh lmnwr ubhehzbvte jnxlmbhgl. Bm yhkfl max bgmxklxvmbhg uxmpxxg fhexvnetk ubhehzr (tgw kxetmxw ubhehzbvte wblvbiebgxl) tgw vhfinmbgz lvbxgvx. Mabl bgmxkwblvbiebgtkr ybxew bgoheoxl kxlxtkvaxkl pah phkd tm ftgr wbyyxkxgm ihbgml hg max vhfinmxk lvbxgvx-ubhehzr lixvmknf: Ykhf mahlx pah tkx wxoxehibgz gxp kxexotgm tezhkbmafl, mh mahlx pah tkx wxoxehibgz tgw nlbgz vhfinmtmbhgte tiiebvtmbhgl mh lmnwr ubhehzbvte iaxghfxgt, ztbg gxp bglbzam bgmh max ebyx lvbxgvxl, bwxgmbyr gxp wknz mtkzxml xmv. Mabl ybxew bl vnkkxgmer xoheobgz, unm hgx ihbgm bl tzkxxw nihg: Ubhbgyhkftmbvl bl t uehllhfbgz ybxew pbmabg pabva maxkx kxftbg ftgr lbzgbybvtgm wblvhoxkbxl mh ux ftwx.")
+
+# split words up into characters and do a count
+cipher_txt_counts <- cipher_txt %>% 
+  paste(collapse="") %>% 
+  strsplit(split="") %>% unlist %>% 
+  `[`(!. %in% c("", " ", ".", ",")) %>% 
+  table
+
+cipher_txt_counts_dt <- data.table(letter = names(cipher_txt_counts), count = as.numeric(cipher_txt_counts), stringsAsFactors=FALSE)
+cipher_txt_counts_dt <- cipher_txt_counts_dt[order(-count)]
+
+cipher_txt_counts_dt
+```
+
+#### Plot the frequency table for visualization.
+
+```{r plot bar graph for ciphertext}
+ggplot(data = cipher_txt_counts_dt, aes(x = letter, y = count)) +
+    geom_bar(stat="identity", position=position_dodge(), colour="black") +
+  theme_bw()
+```
+
+## Decrypting the ciphertext
+
+Based on the letter frequency, "b" and "x" could be "e" since they're the same count. Let's try searching for the key using these assumptions.
+
+### Shift 23: "e" to "b"
+
+```{r shift e to b}
+# clean data
+clean_ciphertxt <- gsub("[[:punct:]]", "", cipher_txt)
+array <- strsplit(clean_ciphertxt, " ")
+
+# decrypt
+decrypt <- map(array, ~ caesar(.x, shift = -3, decrypt = TRUE))
+tolower(paste(unlist(decrypt), "", collapse = ''))
+```
+
+### Shift 19: "e" to "x"
+
+```{r shift e to x}
+decrypt <- map(array, ~ caesar(.x, shift = -7, decrypt = TRUE))
+tolower(paste(unlist(decrypt), "", collapse = ''))
+```
+
+## The end.
